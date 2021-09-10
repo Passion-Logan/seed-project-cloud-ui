@@ -86,14 +86,25 @@ const request = extend({
 request.interceptors.request.use(async (url, options) => {
   const token = getToken();
 
-  const headers = {
+  let headers = {
     'Content-Type': 'application/json',
     // 'Content-Type': 'application/x-www-form-urlencoded',
     Accept: 'application/json',
   };
 
+  if (url.indexOf('/oauth/token') !== -1) {
+    headers = {
+      ...headers,
+      'Authorization': 'Basic YWRtaW46MTIzNDU2'
+    }
+  }
+
   if (token) {
-    headers.token = token;
+    const userToken = `Bearer ${token}`
+    headers = {
+      ...headers,
+      'Authorization': userToken
+    }
   }
 
   return {

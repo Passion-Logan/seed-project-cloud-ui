@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import React, { useState, useRef } from 'react';
 import { Button, Divider, message, Input, Form } from 'antd';
@@ -5,13 +6,12 @@ import { PlusOutlined } from '@ant-design/icons';
 import ProTable from '@ant-design/pro-table';
 import styles from './index.less';
 import { queryUser, addUser, updateUser, removeUser, updatePassword } from './service';
-import CreateForm from './components/CreateForm';
 import UpdateForm from './components/UpdateForm';
 import Modal from 'antd/lib/modal/Modal';
 
 /**
  * 修改/添加用户
- * @param {用户实体} fields
+ * @param fields {用户实体} 
  */
 const handleUpdate = async (fields) => {
   let msg = '添加';
@@ -20,9 +20,9 @@ const handleUpdate = async (fields) => {
     msg = '修改';
     flag = false;
   }
-  const hide = message.loading('正在' + msg);
+  const hide = message.loading(`正在${msg}`)
 
-  if (fields.roleIds.length != 0) {
+  if (fields.roleIds.length !== 0) {
     fields.roleIds = fields.roleIds.join(',');
   } else {
     fields.roleIds = null;
@@ -35,7 +35,7 @@ const handleUpdate = async (fields) => {
       await updateUser({ ...fields });
     }
     hide();
-    message.success(msg + '成功');
+    message.success(`${msg}成功`);
     return true;
   } catch (error) {
     hide();
@@ -95,7 +95,7 @@ const User = () => {
   const [updateModalVisible, handleUpdateModalVisible] = useState(false);
   const [updatePwdVisible, handleUpdatePwdVisible] = useState(false);
   const [stepFormValues, setStepFormValues] = useState({});
-  const [pwdValues, setPwdValues] = useState({});
+  const [setPwdValues] = useState({});
   const actionRef = useRef();
   const columns = [
     {
@@ -209,6 +209,7 @@ const User = () => {
         rowKey={(row) => row.id}
         toolBarRender={(action, { selectedRowKeys, selectedRows }) => [
           <Button
+            key="create"
             type="primary"
             onClick={() => {
               handleUpdateModalVisible(true);

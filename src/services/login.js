@@ -1,10 +1,14 @@
 import request from '@/utils/request';
 
 export async function fakeAccountLogin(params) {
-  // return request('/api/login/account', {
-  return request('/api/auth/oauth/login', {
+  return request('/api/auth/oauth/token', {
     method: 'POST',
-    data: params,
+    params: {
+      ...params,
+      grant_type: 'password',
+      scope: 'all'
+    },
+    requestType: 'form'
   });
 }
 

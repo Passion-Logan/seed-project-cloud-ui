@@ -11,9 +11,9 @@ export async function queryNotices() {
 }
 
 export async function getUserNav() {
-  return request('/api/auth/user/nav');
+  return request('/api/system/auth/user/nav');
 }
 
 export async function getUserInfo() {
-  return request('/api/auth/user/info');
+  return request('/api/system/auth/user/info');
 }

@@ -4,7 +4,6 @@ import { fakeAccountLogin } from '@/services/login';
 import { setAuthority, clearAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { setToken, clearToken } from '@/utils/token';
-// import router from 'umi/router';
 
 const Model = {
   namespace: 'login',
@@ -20,35 +19,10 @@ const Model = {
       }); // Login successfully
 
       // 登录成功以后更新权限，跳转页面
-      if (response.token) {
-        // reloadAuthorized();
-        setToken(response.token)
+      if (response.code === 200) {
+        setToken(response.data.token)
         window.location.href = '/';
-        // yield put(routerRedux.push('/'));
       }
-
-      // if (response.status === 'ok') {
-      //   const urlParams = new URL(window.location.href);
-      //   const params = getPageQuery();
-      //   let { redirect } = params;
-
-      //   if (redirect) {
-      //     const redirectUrlParams = new URL(redirect);
-
-      //     if (redirectUrlParams.origin === urlParams.origin) {
-      //       redirect = redirect.substr(urlParams.origin.length);
-
-      //       if (redirect.match(/^\/.*#/)) {
-      //         redirect = redirect.substr(redirect.indexOf('#') + 1);
-      //       }
-      //     } else {
-      //       window.location.href = '/';
-      //       return;
-      //     }
-      //   }
-
-      //   history.replace(redirect || '/');
-      // }
     },
 
     logout() {
@@ -68,10 +42,6 @@ const Model = {
     },
   },
   reducers: {
-    // changeLoginStatus(state, { payload }) {
-    //   setAuthority(payload.currentAuthority);
-    //   return { ...state, status: payload.status, type: payload.type };
-    // },
     // 登录
     changeLoginStatus(state, { payload }) {
       const statusCode = 'ok';
