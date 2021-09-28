@@ -81,7 +81,7 @@ const Login = (props) => {
             <Col span={8}>
               <img
                 src={imgData === undefined ? onGetVerification() : imgData}
-                style={{ width: '103px', height: '40px', display: 'block' }}
+                style={{ width: '116px', height: '40px', display: 'block' }}
                 alt="验证码"
                 onClick={() => {
                   onGetVerification();
@@ -90,7 +90,7 @@ const Login = (props) => {
             </Col>
           </Row>
         </Form.Item>
-        <Form.Item name="uuid">
+        <Form.Item name="uuid" hidden>
           <Input />
         </Form.Item>
         <Form.Item>
