@@ -114,6 +114,16 @@ export default defineConfig({
                   name: 'system-globle',
                   component: './system/globle',
                 },
+                {
+                  path: '/system/log',
+                  name: 'system-log',
+                  component: './system/log',
+                },
+                {
+                  path: '/system/settings',
+                  name: 'system-setting',
+                  component: './user/setting',
+                },
               ],
             },
             {

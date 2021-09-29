@@ -1,5 +1,5 @@
 // import { queryCurrent, query as queryUsers, getUserNav, getUserInfo } from '@/services/user';
-import { query as queryUsers, getUserNav, getUserInfo } from '@/services/user';
+import { query as queryUsers, getUserInfo } from '@/services/user';
 
 const UserModel = {
   namespace: 'user',
@@ -35,7 +35,7 @@ const UserModel = {
       const response = yield call(getUserInfo);
       yield put({
         type: 'getUserInfo',
-        payload: response,
+        payload: response.data,
       });
     },
   },
