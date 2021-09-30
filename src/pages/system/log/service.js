@@ -1,14 +1,14 @@
 import request from '@/utils/request';
 
 export async function getLogList(params) {
-  return request('/api/sys/log/getPageList', {
+  return request('/api/system/sys/log/getPageList', {
     method: 'POST',
     data: { ...params },
   });
 }
 
 export async function getLoginLogList(params) {
-  return request('/api/sys/log/getPageLoginList', {
+  return request('/api/system/sys/log/getPageLoginList', {
     method: 'POST',
     data: { ...params },
   });

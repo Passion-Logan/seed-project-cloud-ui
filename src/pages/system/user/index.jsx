@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import React, { useState, useRef } from 'react';
 import { Button, Divider, message, Input, Form } from 'antd';
@@ -11,7 +10,7 @@ import Modal from 'antd/lib/modal/Modal';
 
 /**
  * 修改/添加用户
- * @param fields {用户实体} 
+ * @param {用户实体} fields
  */
 const handleUpdate = async (fields) => {
   let msg = '添加';
@@ -20,19 +19,20 @@ const handleUpdate = async (fields) => {
     msg = '修改';
     flag = false;
   }
-  const hide = message.loading(`正在${msg}`)
+  const hide = message.loading(`正在${msg}`);
+  const temp = { ...fields }
 
   if (fields.roleIds.length !== 0) {
-    fields.roleIds = fields.roleIds.join(',');
+    temp.roleIds = fields.roleIds.join(',');
   } else {
-    fields.roleIds = null;
+    temp.roleIds = null;
   }
 
   try {
     if (flag) {
-      await addUser({ ...fields });
+      await addUser({ ...temp });
     } else {
-      await updateUser({ ...fields });
+      await updateUser({ ...temp });
     }
     hide();
     message.success(`${msg}成功`);
@@ -95,7 +95,6 @@ const User = () => {
   const [updateModalVisible, handleUpdateModalVisible] = useState(false);
   const [updatePwdVisible, handleUpdatePwdVisible] = useState(false);
   const [stepFormValues, setStepFormValues] = useState({});
-  const [setPwdValues] = useState({});
   const actionRef = useRef();
   const columns = [
     {
@@ -186,8 +185,8 @@ const User = () => {
           <Divider type="vertical" />
           <a
             onClick={() => {
+              form.resetFields()
               handleUpdatePwdVisible(true);
-              setPwdValues(record);
               form.setFieldsValue({
                 userName: record.userName,
               });
@@ -209,11 +208,11 @@ const User = () => {
         rowKey={(row) => row.id}
         toolBarRender={(action, { selectedRowKeys, selectedRows }) => [
           <Button
-            key="create"
+            key="addBtn"
             type="primary"
             onClick={() => {
               handleUpdateModalVisible(true);
-              setStepFormValues({ id: null, sex: '1', enabled: 'true' });
+              setStepFormValues({ id: null, sex: 1, enabled: 'true' });
             }}
           >
             <PlusOutlined /> 新建

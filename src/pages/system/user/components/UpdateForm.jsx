@@ -44,10 +44,6 @@ const UpdateForm = (props) => {
     handleUpdate({ ...formVals, ...fieldsValue });
   };
 
-  const handleChange = (value) => {
-    console.log(value.join(','));
-  };
-
   const renderContent = () => {
     return (
       <>
@@ -93,7 +89,6 @@ const UpdateForm = (props) => {
             allowClear
             style={{ width: '100%' }}
             placeholder="请选择"
-            onChange={handleChange}
           >
             {children}
           </Select>
@@ -104,8 +99,8 @@ const UpdateForm = (props) => {
               width: '100%',
             }}
           >
-            <Option value="1">男</Option>
-            <Option value="2">女</Option>
+            <Option value={1}>男</Option>
+            <Option value={2}>女</Option>
           </Select>
         </FormItem>
         <FormItem name="email" label="邮箱">
@@ -143,11 +138,11 @@ const UpdateForm = (props) => {
 
     const getChildren = async () => {
       const childrenData = await getAllRole();
-      let result = [];
+      const result = [];
 
       if (childrenData.success) {
         childrenData.data.map((item) => {
-          result.push(
+          return result.push(
             <Option key={item.id} value={item.id}>
               {item.roleName}
             </Option>,
