@@ -22,7 +22,8 @@ const acatarConfig = {
 }
 
 const otherHeader = {
-  token: getToken()
+  token: getToken(),
+  Authorization: `Bearer ${getToken()}`
 }
 
 const date = new Date();

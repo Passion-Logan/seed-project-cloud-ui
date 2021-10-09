@@ -21,10 +21,15 @@ class AvatarDropdown extends React.Component {
       return;
     }
 
+    if (key === 'settings') {
+      history.push(`/system/settings`);
+      return;
+    }
+
     history.push(`/account/${key}`);
   };
 
-  render() {
+  render () {
     const {
       currentUser = {
         avatar: '',
@@ -48,21 +53,20 @@ class AvatarDropdown extends React.Component {
         )}
         {menu && <Menu.Divider />}
 
+        <Menu.Item key="settings">
+          <SettingOutlined />
+          个人设置
+        </Menu.Item>
+
+        <Menu.Divider />
+
         <Menu.Item key="logout">
-          <LogoutOutlined />
+          <LogoutOutlined />  
           退出登录
         </Menu.Item>
       </Menu>
     );
-
-
-    const test = () => {
-      console.log(currentUser.data);
-
-    }
-    test()
-    
-    return currentUser && currentUser ? (
+    return currentUser && currentUser.nickName ? (
       <HeaderDropdown overlay={menuHeaderDropdown}>
         <span className={`${styles.action} ${styles.account}`}>
           <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
