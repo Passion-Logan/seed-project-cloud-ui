@@ -49,7 +49,7 @@ const AvatarView = (props) => {
           setAvatarUri(newUri);
           updateHead(newUri);
         }
-      }} headers={otherHeader} data={otherParams} action="/api/auth/user/uploadAvatar">
+      }} headers={otherHeader} data={otherParams} action="/api/system/auth/user/uploadAvatar">
         <div className={styles.button_view}>
           <Button>
             <UploadOutlined />

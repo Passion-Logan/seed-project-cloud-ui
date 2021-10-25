@@ -11,13 +11,6 @@ export async function updateUserInfo(params) {
   });
 }
 
-export async function uploadAvatar(params) {
-  return request('/api/system/auth/user/uploadAvatar', {
-    method: 'POST',
-    body: params,
-  });
-}
-
 export async function updatePwd(params) {
   return request('/api/system/auth/user/updatePwd', {
     method: 'POST',
